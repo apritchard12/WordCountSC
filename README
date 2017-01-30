@@ -1,0 +1,8 @@
+
+Run with arguments: inputDirectory, stopWordsDirectory/file.txt, outputDirectory
+
+
+
+Important* By default the word count program will expect the enron directory structure.  So just add /file/path/maildir/
+
+The program itself will add in the /*/*/*. to load all of the emails.
