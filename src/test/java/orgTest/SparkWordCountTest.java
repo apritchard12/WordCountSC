@@ -15,6 +15,13 @@ public class SparkWordCountTest {
     String resources = "/src/main/resources/";
 
     @Test
+    /**
+     * test reading in file with words.
+     * test the words were split correctly
+     * test for filtering of input.  remove any words less than 2 characters
+     * remove any stop words
+     * compare filtered result with expected value
+     */
     public void wordCount() {
 
         SparkWordCount sparkWordCount = new SparkWordCount("local");
