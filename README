@@ -14,3 +14,15 @@ The program itself will add in the /*/*/*. to load all of the emails.
 **Stop words have been included and are located in:  src/main/resources/stopWords
 
 Unit tests do run and read sample input data, and also subtract any stop words.
+
+
+There is partial email header filtering, I did not filter the multi-line to portion, where there are multiple lists of email addresses.
+I did filter out any lines containing: Message-ID:, To:, From:, Mime-Version: Content-Transfer-Encoding:, X-From:
+
+
+Improvements:
+
+I would spend more time evaluating the filters, and seeing how effective they were at removing the data we wanted removed
+and see how often it was taking any extra data away.
+
+Output format I would like to make look a little bit more cleaner.
