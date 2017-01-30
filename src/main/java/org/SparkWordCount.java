@@ -57,6 +57,11 @@ public class SparkWordCount implements Serializable{
         return spark.read().textFile(inputPath + "/*/*/*.").javaRDD();
     }
 
+    /**
+     * use this to load a regular text from a normal path
+     * @param inputPath
+     * @return
+     */
     public JavaRDD<String> loadStandardDirectory(String inputPath) {
         return spark.read().textFile(inputPath).javaRDD();
     }
@@ -116,6 +121,11 @@ public class SparkWordCount implements Serializable{
         }
     }
 
+    /**
+     * sort words in order by most frequently occurring, and also remove any words that occur less than 10 times.
+     * @param counts
+     * @return
+     */
     public JavaPairRDD<Tuple2<Integer, String>, Integer> sortAndFilter(JavaPairRDD<String, Integer> counts) {
 
         //filter out minimum 10 word occurances
@@ -136,6 +146,12 @@ public class SparkWordCount implements Serializable{
         return wordSortedByCount;
     }
 
+    /**
+     * save to file.  the number of results can be changed with the input parameter as desired
+     * @param wordsSortedByCount
+     * @param numberFilesResultSize
+     * @param outputPath
+     */
     public void saveToFile(JavaPairRDD<Tuple2<Integer, String>, Integer> wordsSortedByCount, int numberFilesResultSize, String outputPath) {
         wordsSortedByCount.coalesce(numberFilesResultSize).saveAsTextFile(outputPath);
     }
