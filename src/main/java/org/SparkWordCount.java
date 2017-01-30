@@ -150,6 +150,8 @@ public class SparkWordCount implements Serializable{
      * @param outputPath
      */
     public void saveToFile(JavaPairRDD<Tuple2<Integer, String>, Integer> wordsSortedByCount, int numberFilesResultSize, String outputPath) {
+        //coalesce was added as so many result files were being saved during testing.
+        //this could be removed for production data sets
         wordsSortedByCount.coalesce(numberFilesResultSize).saveAsTextFile(outputPath);
     }
 
