@@ -37,7 +37,7 @@ public class SparkWordCountTest {
         List<String> list = filtered.collect();
         for (String a: list)
             System.out.println(a);
-        
+
         sparkWordCount.closeSession();
     }
 }
