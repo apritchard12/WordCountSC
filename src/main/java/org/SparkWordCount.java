@@ -44,12 +44,13 @@ public class SparkWordCount implements Serializable{
      * @return
      */
     public JavaRDD<String> getWordsFromStringLine (JavaRDD<String> lines) {
-        return lines.flatMap(new FlatMapFunction<String, String>() {
+        /*return lines.flatMap(new FlatMapFunction<String, String>() {
             public Iterator<String> call(String s) {
                 //remove punctuation and convert to lowercase
                 String r = s.replaceAll("\\p{P}", "").toLowerCase();
                 return Arrays.asList(r.split(" ")).iterator(); }
-        });
+        }); */
+        return lines.flatMap(line-> Arrays.asList(line.replaceAll("\\p{P}", "").toLowerCase().split(" ")).iterator());
     }
 
     public JavaRDD<String> loadEnronEmailDirectory(String inputPath) {
@@ -89,6 +90,7 @@ public class SparkWordCount implements Serializable{
      * @return
      */
     JavaPairRDD<String, Integer> performWordCount(JavaRDD<String> words ) {
+
         JavaPairRDD<String, Integer> pairs = words.mapToPair(new PairFunction<String, String, Integer>() {
             public Tuple2<String, Integer> call(String s) {
                 return new Tuple2<String, Integer>(s, 1); }
@@ -129,12 +131,7 @@ public class SparkWordCount implements Serializable{
     public JavaPairRDD<Tuple2<Integer, String>, Integer> sortAndFilter(JavaPairRDD<String, Integer> counts) {
 
         //filter out minimum 10 word occurances
-        counts = counts.filter(new Function<Tuple2<String,Integer>, Boolean>() {
-            @Override
-            public Boolean call(Tuple2<String, Integer> v1) throws Exception {
-                return v1._2() > 10;
-            }
-        });
+        counts = counts.filter(line -> line._2() > 10);
 
         //now sort the result
         // setting value to null, since it won't be used anymore
