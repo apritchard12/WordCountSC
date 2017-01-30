@@ -1,8 +1,16 @@
 
-Run with arguments: inputDirectory, stopWordsDirectory/file.txt, outputDirectory
+1. clone project to your machine
+2. mvn package
 
+Run with arguments: inputDirectory, stopWordsDirectory/file.txt, outputDirectory
+3. mvn exec:java -Dexec.mainClass="org.Main" -Dexec.args="/project/email /project/src/main/resources/stopWords /Users/output"
 
 
 Important* By default the word count program will expect the enron directory structure.  So just add /file/path/maildir/
 
 The program itself will add in the /*/*/*. to load all of the emails.
+
+
+**Stop words have been included and are located in:  src/main/resources/stopWords
+
+Unit tests do run and read sample input data, and also subtract any stop words.
