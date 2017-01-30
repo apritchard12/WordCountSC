@@ -5,23 +5,21 @@
 Run with arguments: inputDirectory, stopWordsDirectory/file.txt, outputDirectory
 3. mvn exec:java -Dexec.mainClass="org.Main" -Dexec.args="/project/email /project/src/main/resources/stopWords /Users/output"
 
-
 Important* By default the word count program will expect the enron directory structure.  So just add /file/path/maildir/
 
 The program itself will add in the /*/*/*. to load all of the emails.
 
-
-**Stop words have been included and are located in:  src/main/resources/stopWords
-
-Unit tests do run and read sample input data, and also subtract any stop words.
-
-
+-----Stop words / email header filters:
+Stop words have been included and are located in:  src/main/resources/stopWords
 There is partial email header filtering, I did not filter the multi-line to portion, where there are multiple lists of email addresses.
 I did filter out any lines containing: Message-ID:, To:, From:, Mime-Version: Content-Transfer-Encoding:, X-From:
 
+-----Unit tests:
+Unit tests do run and read sample input data, and also subtract any stop words.
+Unit test located in src/test/orgTest/SparkWordCountTest
+Unit tests could be added to further test filtering, it does do a basic test, there could be more for punctuation removal
 
-Improvements:
-
+-----Improvements:
 I would spend more time evaluating the filters, and seeing how effective they were at removing the data we wanted removed
 and see how often it was taking any extra data away.
 
