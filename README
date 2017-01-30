@@ -10,6 +10,7 @@ Important* By default the word count program will expect the enron directory str
 The program itself will add in the /*/*/*. to load all of the emails.
 
 -----Stop words / email header filters:
+It was assumed each file was a different email
 Stop words have been included and are located in:  src/main/resources/stopWords
 There is partial email header filtering, I did not filter the multi-line to portion, where there are multiple lists of email addresses.
 I did filter out any lines containing: Message-ID:, To:, From:, Mime-Version: Content-Transfer-Encoding:, X-From:
@@ -22,5 +23,7 @@ Unit tests could be added to further test filtering, it does do a basic test, th
 -----Improvements:
 I would spend more time evaluating the filters, and seeing how effective they were at removing the data we wanted removed
 and see how often it was taking any extra data away.
+Coalesce was used to save the output as one file.  This would be removed on production data sets.  It was used here to make
+reading the output easier during development.
 
 Output format I would like to make look a little bit more cleaner.
